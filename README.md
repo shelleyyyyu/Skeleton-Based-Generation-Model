@@ -5,6 +5,7 @@ The Code for "A Skeleton-Based Model for Promoting Coherence Among Sentences in 
 * python 3.5
 * tensorflow 1.4.1
 * nltk 3.2.5
+* spacy // pip install spacy; python -m spacy download en
 ## Data Source
 * [visual storytelling dataset](http://visionandlanguage.net/VIST/dataset.html)
 * [compression dataset](https://github.com/google-research-datasets/sentence-compression/tree/master/data)
