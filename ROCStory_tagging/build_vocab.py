@@ -34,16 +34,21 @@ data = merge_data("./data/2016.csv","./data/2017.csv")
 words = []
 nlp = spacy.load('en')
 print("----------------HERE 1----------------")
-for stories in data:
+count_dict = {}
+for sid, stories in enumerate(data):
+	print("sid: %d" %sid)
 	for s in stories:
 		tokenized_data = nlp(s)
 		for token in tokenized_data:
-			words.append(token.string)
+			w = token.string
+			if w in count_dict.keys():
+				count_dict[w] = count_dict[w] + 1
+			else:
+				count_dict[w] = 1
 print("----------------HERE 2----------------")
-
-count_dict = wordcount(words)
+count_list = sorted(count_dict.items(),key=lambda x:x[1],reverse=True)
 print("----------------HERE 3----------------")
 
 with open("./new_data/vocab.txt", 'w') as file:
-	for c in count_dict:
+	for c in count_list:
 		file.write(str(c[0]) + " " + str(c[1]) +'\n')
