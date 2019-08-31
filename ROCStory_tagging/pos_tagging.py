@@ -10,6 +10,7 @@
 #python -m spacy.en.download all
 import csv
 import spacy
+import json
 
 def load_csv(filename):
     with open(filename, 'r') as File:
@@ -54,7 +55,7 @@ def construct_new_dataset(data):
 		data_dict["compression"] = compression
 		data_dict["label"] = label
 		data_dict["text"] = text
-		array.append(data_dict)
+		array.append(json.dumps(data_dict))
 	return array
 
 nlp = spacy.load('en')
