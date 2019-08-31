@@ -36,11 +36,11 @@ nlp = spacy.load('en')
 print("----------------HERE 1----------------")
 count_dict = {}
 for sid, stories in enumerate(data):
-	print("sid: %d" %sid)
+	print("sid: %d/%d" %(sid, len(data)))
 	for s in stories:
 		tokenized_data = nlp(s)
 		for token in tokenized_data:
-			w = token.string
+			w = token.string.lower().strip()
 			if w in count_dict.keys():
 				count_dict[w] = count_dict[w] + 1
 			else:
