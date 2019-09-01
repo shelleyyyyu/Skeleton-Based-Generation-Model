@@ -63,21 +63,21 @@ data = merge_data("./data/2016.csv","./data/2017.csv")
 tag_data, story_data = clean_data(data)
 
 # skeleton
-array = construct_new_dataset(tag_data)
+#array = construct_new_dataset(tag_data)
 #story_data = story_data[:10]
 
-train_lens = int(len(array) * 0.8)
-valid_lens = int(len(array) * 0.1)
+train_lens = int(len(story_data) * 0.8)
+valid_lens = int(len(story_data) * 0.1)
 
-train_sc_array = array[:train_lens]
-valid_sc_array = array[train_lens:train_lens+valid_lens]
-test_sc_array = array[train_lens+valid_lens:]
+#train_sc_array = array[:train_lens]
+#valid_sc_array = array[train_lens:train_lens+valid_lens]
+#test_sc_array = array[train_lens+valid_lens:]
 
 train_story_array = story_data[:train_lens]
 valid_story_array = story_data[train_lens:train_lens+valid_lens]
 test_story_array = story_data[train_lens+valid_lens:]
 
-with open ("./new_data/train_sc.txt", 'w') as file:
+'''with open ("./new_data/train_sc.txt", 'w') as file:
 	for a in train_sc_array:
 		file.write(str(a) + "\n")
 with open ("./new_data/valid_sc.txt", 'w') as file:
@@ -85,7 +85,7 @@ with open ("./new_data/valid_sc.txt", 'w') as file:
 		file.write(str(a) + "\n")
 with open ("./new_data/test_sc.txt", 'w') as file:
 	for a in test_sc_array:
-		file.write(str(a) + "\n")
+		file.write(str(a) + "\n")'''
 
 
 with open ("./new_data/train_process.txt", 'w') as file:
@@ -93,7 +93,7 @@ with open ("./new_data/train_process.txt", 'w') as file:
 		tokenized_data = nlp(a)
 		out_str = ""
 		for t in tokenized_data:
-			out_str += t.string.lower()
+			out_str += t.string.lower().strip() + " "
 		file.write(out_str + "\n")
 
 with open ("./new_data/valid_process.txt", 'w') as file:
@@ -101,7 +101,7 @@ with open ("./new_data/valid_process.txt", 'w') as file:
 		tokenized_data = nlp(a)
 		out_str = ""
 		for t in tokenized_data:
-			out_str += t.string.lower()
+			out_str += t.string.lower().strip() + " "
 		file.write(out_str + "\n")
 
 with open ("./new_data/test_process.txt", 'w') as file:
@@ -109,7 +109,7 @@ with open ("./new_data/test_process.txt", 'w') as file:
 		tokenized_data = nlp(a)
 		out_str = ""
 		for t in tokenized_data:
-			out_str += t.string.lower()
+			out_str += t.string.lower().strip() + " "
 		file.write(out_str + "\n")
 
 
