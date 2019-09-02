@@ -13,7 +13,7 @@ import spacy
 import json
 
 def load_csv(filename):
-    with open(filename, 'r') as File:
+    with open(filename, 'r', encoding='utf-8') as File:
         stories = []
         lines = csv.reader(File)
         for line in lines:
@@ -80,18 +80,18 @@ train_story_array = story_data[:train_lens]
 valid_story_array = story_data[train_lens:train_lens+valid_lens]
 test_story_array = story_data[train_lens+valid_lens:]
 
-with open ("./new_data/train_sc.txt", 'w') as file:
+with open ("./new_data/train_sc.txt", 'w', encoding='utf-8') as file:
 	for a in train_sc_array:
 		file.write(str(a) + "\n")
-with open ("./new_data/valid_sc.txt", 'w') as file:
+with open ("./new_data/valid_sc.txt", 'w', encoding='utf-8') as file:
 	for a in valid_sc_array:
 		file.write(str(a) + "\n")
-with open ("./new_data/test_sc.txt", 'w') as file:
+with open ("./new_data/test_sc.txt", 'w', encoding='utf-8') as file:
 	for a in test_sc_array:
 		file.write(str(a) + "\n")
 
 
-with open ("./new_data/train_process.txt", 'w') as file:
+with open ("./new_data/train_process.txt", 'w', encoding='utf-8') as file:
 	for a in train_story_array:
 		tokenized_data = nlp(a)
 		out_str = ""
@@ -99,7 +99,7 @@ with open ("./new_data/train_process.txt", 'w') as file:
 			out_str += t.string.lower().strip() + " "
 		file.write(out_str + "\n")
 
-with open ("./new_data/valid_process.txt", 'w') as file:
+with open ("./new_data/valid_process.txt", 'w', encoding='utf-8') as file:
 	for a in valid_story_array:
 		tokenized_data = nlp(a)
 		out_str = ""
@@ -107,7 +107,7 @@ with open ("./new_data/valid_process.txt", 'w') as file:
 			out_str += t.string.lower().strip() + " "
 		file.write(out_str + "\n")
 
-with open ("./new_data/test_process.txt", 'w') as file:
+with open ("./new_data/test_process.txt", 'w', encoding='utf-8') as file:
 	for a in test_story_array:
 		tokenized_data = nlp(a)
 		out_str = ""
